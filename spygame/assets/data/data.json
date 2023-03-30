@@ -1,0 +1,12 @@
+{
+    "locations": [
+        {
+            "name": "Market",
+            "roles": ["Seller", "Buyer"]
+        },
+        {
+            "name": "Park",
+            "roles": ["Street cleaner", "dog walker"]
+        }
+    ]
+}
