@@ -16,7 +16,13 @@ function OfflineScreen() {
                             {location.name}
                         </Text>
                         <Text>
-                            {location.roles}
+                            {location.roles.map(
+                                role =>
+                                    <Text>
+                                        {role}
+                                    </Text>
+                            )
+                            }
                         </Text>
                     </View>)}
             </View>
