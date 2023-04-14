@@ -1,28 +1,26 @@
 import React from 'react'
-import {StyleSheet, View, TouchableOpacity, Text, Dimensions} from 'react-native'
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 
-export const AppButton = ({children ,color = '#D9D9D9', style}) => {
+export const AppButton = ({ children, color = '#D9D9D9', style }) => {
     return (
-        <TouchableOpacity activeOpacity={0.7}>
-            <View style={{...styles.button, backgroundColor: color, ...style}}>
-                <Text style={styles.text}>
-                    {children}
-                </Text>
-            </View>
+        <TouchableOpacity activeOpacity={0.7} style={{ ...styles.button, backgroundColor: color, ...style }}>
+            <Text style={styles.text}>
+                {children}
+            </Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     button: {
-        width: Dimensions.get('window').width,
+        flex: 1,
         paddingHorizontal: 20,
         paddingVertical: 16,
         borderRadius: 12,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-    }, 
+    },
     text: {
         color: 'black',
         fontWeight: 'bold'
