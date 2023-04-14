@@ -13,7 +13,7 @@ export const AppButton = ({ children, color = '#D9D9D9', style }) => {
 
 const styles = StyleSheet.create({
     button: {
-        flex: 1,
+        width: '100%',
         paddingHorizontal: 20,
         paddingVertical: 16,
         borderRadius: 12,
