@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native';
-import { AppInput } from '../UI/AppInput'
-import { AppButton } from '../UI/AppButton';
+import { PlayersCard } from '../UI/PlayersCard';
  
 function OnlineScreen() {
     return (
@@ -11,6 +10,8 @@ function OnlineScreen() {
             <AppButton>
                 Подключиться 
             </AppButton> */}
+
+            <PlayersCard />
         </View>
     );
 }

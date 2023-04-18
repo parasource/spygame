@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, TextInput, Text, View } from 'react-native'
+import { StyleSheet, TextInput, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 
 export const AppInput = ({ style }) => {
