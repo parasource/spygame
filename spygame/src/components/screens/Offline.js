@@ -1,33 +1,44 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, Text } from 'react-native';
 import data from '../../../assets/data/data.json'
+import { AppInput } from '../UI/AppInput';
+import { TimeInput } from '../UI/TimeInput';
+import { AppButton } from '../UI/AppButton';
+import { connect } from 'react-redux';
+import { createOfflineGame } from '../../store/gameReducer';
 
-function OfflineScreen() {
+function OfflineScreen({createOfflineGame}) {
+    const [playersCount, setPlayersCount] = useState(2)
+    const [spiesCount, setSpiesCount] = useState(1)
+    const [timer, setTimer] = useState(5)
 
-    const locations = data.locations;
+    const startGameEvent = () => {
+        createOfflineGame({playersCount, spiesCount, timer})
+    }
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Оффлайн-игра</Text>
-            <View>
-                {locations.map(location =>
-                    <View>
-                        <Text>
-                            {location.name}
-                        </Text>
-                        <Text>
-                            {location.roles.map(
-                                role =>
-                                    <Text>
-                                        {role}
-                                    </Text>
-                            )
-                            }
-                        </Text>
-                    </View>)}
-            </View>
+        <View style={{ flex: 1, paddingHorizontal: 16 }}>
+            <AppInput label={'Количество игроков'} 
+                        placeholder='0' 
+                        type='counter' 
+                        onChangeHandler={setPlayersCount} 
+                        initValue={playersCount} 
+                        max={15} min={2}/>
+            <AppInput label={'Количество шпионов'} 
+                        placeholder='0' 
+                        type='counter' 
+                        initValue={spiesCount} 
+                        onChangeHandler={setSpiesCount} 
+                        max={Math.floor(playersCount/2)} min={1}/>
+            <TimeInput label={'Время игры'} 
+                        initValue={timer} 
+                        onChangeHandler={setTimer} 
+                        max={25} min={5}/>
+            <AppButton pressHandler={startGameEvent}>
+                Начать игру
+            </AppButton>
         </View>
     );
 }
 
-export default OfflineScreen;
+export default connect(null, {createOfflineGame})(OfflineScreen);

@@ -1,46 +1,61 @@
-import React, { useState } from 'react'
-import { StyleSheet, TextInput, View } from 'react-native'
+import React from 'react'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 
-export const AppInput = ({ style }) => {
-    const [value, setValue] = useState('')
-
-    const pressHandler = () => {
-        if (value.trim()) {
-            onSubmit(value)
-            setValue('')
-            Keyboard.dismiss()
-        } else {
-            Alert.alert('Название дела не может быть пустым')
-        }
-    }
+export const AppInput = ({ style, label, placeholder, type, initValue, max, min, onChangeHandler }) => {
     return (
-        <View style={{ width: '100%' }}>
-            <TextInput
-                style={{ ...styles.input, ...style }}
-                onChangeText={text => setValue(text)}
-                value={value}
-                placeholder='Введите ID комнаты'
-            />
-
-            <FontAwesome name="circle" size={20} color="#D9D9D9" style={styles.circle} />
-        </View>
+        <>
+            {label && <Text style={{fontSize: 14, marginTop: 20, fontWeight: 700}}>{label}</Text>}
+            <View style={styles.inputWrapper}>
+                <TextInput
+                    style={{ ...styles.input, ...style }}
+                    onChangeText={text => onChangeHandler(text)}
+                    value={initValue + ''}
+                    placeholder={placeholder}
+                    keyboardType={type == 'counter' ? 'numeric' : 'default'}
+                />
+                {type == 'counter' ?
+                <>
+                    <TouchableOpacity>
+                        <FontAwesome name="minus-square" size={24} color="#D9D9D9" style={styles.circle} onPress={() => onChangeHandler(prev => {
+                            if(+prev > min){
+                                return +prev - 1
+                            }else{
+                                return prev
+                             }
+                        })}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <FontAwesome name="plus-square" size={24} color="#D9D9D9" style={styles.circle} onPress={() => onChangeHandler(prev => {
+                             if(+prev < max){
+                                return +prev + 1
+                             }else{
+                                return prev
+                             }
+                        })}/>
+                    </TouchableOpacity>
+                </>
+                : <FontAwesome name="circle" size={24} color="#D9D9D9" style={styles.circle} />}
+            </View>
+        </>
     )
 }
 
 const styles = StyleSheet.create({
-    input: {
-        position: 'relative',
-        width: '100%',
-        flexDirection: 'row',
+    inputWrapper: {
         paddingVertical: 12,
         paddingHorizontal: 16,
         borderRadius: 12,
-        backgroundColor: '#FAFAFA'
+        backgroundColor: '#FAFAFA',
+        width: '100%', 
+        marginTop: 8, 
+        flexDirection: 'row', 
+        alignItems: 'center'
+    },
+    input: {
+        flex: 1
     },
     circle: {
-        position: 'absolute',
-        right: 16,
-        bottom: 10,
+        marginLeft: 12
     }
 })

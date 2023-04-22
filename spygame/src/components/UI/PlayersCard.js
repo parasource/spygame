@@ -1,46 +1,30 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 
-export const PlayersCard = () => {
+export const PlayersCard = ({label}) => {
 
-    const img = 'https://reactnative.dev/img/tiny_logo.png'
-
-    const players = [
-        <Image
-            style={styles.playerImg}
-            source={{
-                uri: img,
-            }}
-        />,
-        <Image
-            style={styles.playerImg}
-            source={{
-                uri: img,
-            }}
-        />,
-        <Image
-            style={styles.playerImg}
-            source={{
-                uri: img,
-            }}
-        />,
-        <Image
-            style={styles.playerImg}
-            source={{
-                uri: img,
-            }}
-        />
-    ]
+    const players = [0,0,0,0]
 
     let content = (
-        <View style={styles.players}>
-            <View style={styles.playersList}>
-                {players.map(item => item)}
+        <>
+            {label && <Text style={{marginTop: 20, fontSize: 14, fontWeight: 700}}>{label}</Text>}
+            <View style={styles.players}>
+                <View style={styles.playersList}>
+                    {players.map(({_,index}) => (
+                        <Image
+                            style={styles.playerImg}
+                            key={'player_'+index}
+                            source={{
+                                uri: 'https://reactnative.dev/img/tiny_logo.png',
+                            }}
+                        />
+                    ))}
+                </View>
+                <Text style={styles.playersCount}>
+                    {players.length} из 6
+                </Text>
             </View>
-            <Text style={styles.playersCount}>
-                {players.length} из 6
-            </Text>
-        </View>
+        </>
     )
 
     if (players.length === 0) {
@@ -69,6 +53,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         backgroundColor: '#FAFAFA',
         borderRadius: 12,
+        marginTop: 8
     },
     playersList: {
         flexDirection: 'row',
