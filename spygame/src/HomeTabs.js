@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import OnlineScreen from './components/screens/Online';
-import OfflineScreen from './components/screens/Offline';
+import OnlineScreen from './components/screens/createOnlinePage';
+import OfflineScreen from './components/screens/createOfflinePage';
 
 const Tab = createBottomTabNavigator();
 
