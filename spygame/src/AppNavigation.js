@@ -1,15 +1,18 @@
 import * as React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import OnlineScreen from './components/screens/Online';
-import OfflineScreen from './components/screens/Offline';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import {NavigationContainer} from '@react-navigation/native'
+import HomeTabs from './HomeTabs';
+import EmptyPage from './components/pages/EmptyPage';
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator()
 
 export default function AppNavigation() {
     return (
-        <Tab.Navigator>
-            <Tab.Screen name="Онлайн-игра" component={OnlineScreen} />
-            <Tab.Screen name="Оффлайн-игра" component={OfflineScreen} />
-        </Tab.Navigator>
+        <NavigationContainer independent={true}>
+            <Stack.Navigator>
+                <Stack.Screen name='Home' component={HomeTabs}/>
+                <Stack.Screen name='Empty' component={EmptyPage}/>
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }

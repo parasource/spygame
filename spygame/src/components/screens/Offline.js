@@ -7,13 +7,14 @@ import { AppButton } from '../UI/AppButton';
 import { connect } from 'react-redux';
 import { createOfflineGame } from '../../store/gameReducer';
 
-function OfflineScreen({createOfflineGame}) {
+function OfflineScreen({createOfflineGame, navigation}) {
     const [playersCount, setPlayersCount] = useState(2)
     const [spiesCount, setSpiesCount] = useState(1)
     const [timer, setTimer] = useState(5)
 
     const startGameEvent = () => {
         createOfflineGame({playersCount, spiesCount, timer})
+        navigation.navigate('Empty')
     }
 
     return (
