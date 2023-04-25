@@ -5,6 +5,8 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import FlipCard from 'react-native-flip-card'
 import Animated, {
   Easing,
+  runOnJS,
+  useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
   useValue,
@@ -22,7 +24,7 @@ const CARD_WIDTH = wWidth - 128;
 const CARD_HEIGHT = CARD_WIDTH * aspectRatio;
 const DURATION = 250;
 
-export const Card = ({index, card}) => {
+export const Card = ({setIsEnd, index, card}) => {
 	const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(-height);
@@ -54,7 +56,13 @@ export const Card = ({index, card}) => {
       const dest = snapPoint(translateX.value, velocityX, SNAP_POINTS);
       translateX.value = withSpring(dest, { velocity: velocityX });
       translateY.value = withSpring(index * -5, { velocity: velocityY });
-      scale.value = withTiming(1);
+      scale.value = withTiming(1, {}, () => {
+        const isLast = index === 0;
+        const isSwipedLeftOrRight = dest !== 0;
+        if (isLast && isSwipedLeftOrRight) {
+          runOnJS(setIsEnd)(true)
+        }
+      });
     })
 
   const style = useAnimatedStyle(() => ({
