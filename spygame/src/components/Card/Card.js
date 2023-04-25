@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {useCallback, useEffect} from 'react';
 import { View, StyleSheet, Image, Dimensions, Text } from 'react-native';
 import { images } from '../../../assets/images/index';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import FlipCard from 'react-native-flip-card'
 import Animated, {
   Easing,
-  useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
+  useValue,
   withDelay,
   withSpring,
   withTiming,
@@ -22,7 +22,7 @@ const CARD_WIDTH = wWidth - 128;
 const CARD_HEIGHT = CARD_WIDTH * aspectRatio;
 const DURATION = 250;
 
-export const Card = ({shuffleBack, index}) => {
+export const Card = ({index, card}) => {
 	const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(-height);
@@ -40,21 +40,6 @@ export const Card = ({shuffleBack, index}) => {
 		rotateZ.value = withDelay(delay, withSpring(theta));
   }, [delay, index, rotateZ, theta, translateY]);
 
-  // useAnimatedReaction(
-  //   () => shuffleBack.value,
-  //   (v) => {
-  //     if (v) {
-  //       const duration = 150 * index;
-  //       translateX.value = withDelay(
-  //         duration,
-  //         withSpring(0, {}, () => {
-  //           shuffleBack.value = false;
-  //         })
-  //       );
-  //       rotateZ.value = withDelay(duration, withSpring(theta));
-  //     }
-  //   }
-  // );
   const gesture = Gesture.Pan()
     .onBegin(() => {
       offset.value = { x: translateX.value, y: translateY.value };
@@ -69,13 +54,7 @@ export const Card = ({shuffleBack, index}) => {
       const dest = snapPoint(translateX.value, velocityX, SNAP_POINTS);
       translateX.value = withSpring(dest, { velocity: velocityX });
       translateY.value = withSpring(index * -5, { velocity: velocityY });
-      scale.value = withTiming(1, {}, () => {
-        const isLast = index === 0;
-        const isSwipedLeftOrRight = dest !== 0;
-        if (isLast && isSwipedLeftOrRight) {
-          shuffleBack.value = true;
-        }
-      });
+      scale.value = withTiming(1);
     })
 
   const style = useAnimatedStyle(() => ({
@@ -105,7 +84,15 @@ export const Card = ({shuffleBack, index}) => {
 							style={styles.image}
 						/>
 						<View style={{...styles.image, backgroundColor: '#D5D5FC', justifyContent:'center', alignItems: 'center', borderRadius: 20}}>
-							<Text style={{fontSize: 20, fontWeight: 'bold', color: '#05052C'}}>SPY</Text>
+							<Text style={{
+                fontSize: 20, 
+                fontWeight: 'bold', 
+                color: '#05052C'}}>Локация: {card.location}</Text>
+							<Text style={{
+                fontSize: 20, 
+                fontWeight: 'bold', 
+                color: '#05052C', 
+                marginTop: 8}}>Роль: {card.role}</Text>
 						</View>
 					</FlipCard>
 				</Animated.View>

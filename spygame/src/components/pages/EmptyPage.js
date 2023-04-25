@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Alert } from 'react-native'
 import { AppButton } from "../UI/AppButton";
 import { Card } from "../Card/Card";
-import { useSharedValue } from "react-native-reanimated";
+import { connect } from 'react-redux';
 
-const cards = ['a','a','a','a','a']
+function EmptyPage({ navigation, cards, timer}) {
+    const [isEnd, setIsEnd] = useState(null)
 
-export default function EmptyPage({ navigation }) {
-    const shuffleBack = useSharedValue(false)
+    useEffect(() => {
+        console.log(isEnd);
+    },[isEnd])
 
     const exitFromGame = () => {
         Alert.alert(
@@ -30,16 +32,26 @@ export default function EmptyPage({ navigation }) {
     }
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{flex: 1}}>
             {cards.map((card, index) => (
-                <Card card={card} key={index} index={index} shuffleBack={shuffleBack} />
+                <Card card={card} key={index} index={index} setIsEnd={setIsEnd} />
             ))}
-            {/* <AppButton
-                pressHandler={
-                    () => exitFromGame()
-                }>
-                Назад
-            </AppButton> */}
+            {isEnd !== cards.length - 1 && 
+            <View style={{flex: 1, paddingHorizontal: 16}} pointerEvents="box-none">
+                <AppButton
+                    pressHandler={
+                        () => exitFromGame()
+                    }>
+                    Назад
+                </AppButton>
+            </View>}
         </View>
     )
 }
+
+const mapStateToProps = (state) => ({
+	cards: state.game.cards,
+	timer: state.game.timer
+})
+
+export default connect(mapStateToProps, null)(EmptyPage)
