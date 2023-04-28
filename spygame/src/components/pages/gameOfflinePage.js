@@ -3,8 +3,9 @@ import { View, Alert } from 'react-native'
 import { AppButton } from "../UI/AppButton";
 import { Card } from "../Card/Card";
 import { connect } from 'react-redux';
+import { Timer } from "../UI/Timer";
 
-function EmptyPage({ navigation, cards, timer}) {
+function gameOfflinePage({ navigation, cards, timer}) {
     const [isEnd, setIsEnd] = useState(false)
 
     const exitFromGame = () => {
@@ -33,7 +34,8 @@ function EmptyPage({ navigation, cards, timer}) {
                 <Card card={card} key={'card' + index} index={index} setIsEnd={setIsEnd} />
             ))}
             {isEnd && 
-            <View style={{flex: 1, paddingHorizontal: 16}} pointerEvents="box-none">
+            <View style={{flex: 1, paddingHorizontal: 16, justifyContent: 'center', alignItems: 'center'}} pointerEvents="box-none">
+                <Timer minutes={timer}/>
                 <AppButton
                     pressHandler={
                         () => exitFromGame()
@@ -50,4 +52,4 @@ const mapStateToProps = (state) => ({
 	timer: state.game.timer
 })
 
-export default connect(mapStateToProps, null)(EmptyPage)
+export default connect(mapStateToProps, null)(gameOfflinePage)

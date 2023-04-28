@@ -14,7 +14,7 @@ function OfflineScreen({createOfflineGame, navigation}) {
 
     const startGameEvent = () => {
         createOfflineGame({playersCount, spiesCount, timer})
-        navigation.navigate('Empty')
+        navigation.navigate('Offline-game')
     }
 
     return (
