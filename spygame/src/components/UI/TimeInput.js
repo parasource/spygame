@@ -2,16 +2,15 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 
-export const TimeInput = ({ style, label, initValue, max, min }) => {
-    const [value, setValue] = useState(initValue)
+export const TimeInput = ({ style, label, initValue, max, min, onChangeHandler}) => {
 
     return (
         <>
             {label && <Text style={{fontSize: 14, marginTop: 20, fontWeight: 700}}>{label}</Text>}
             <View style={styles.inputWrapper}>
-                <Text style={{ ...styles.input, ...style }}>{value + ':00 мин'}</Text>
+                <Text style={{ ...styles.input, ...style }}>{initValue + ':00 мин'}</Text>
                 <TouchableOpacity>
-                        <FontAwesome name="minus-square" size={24} color="#D9D9D9" style={styles.circle} onPress={() => setValue(prev => {
+                        <FontAwesome name="minus-square" size={24} color="#D9D9D9" style={styles.circle} onPress={() => onChangeHandler(prev => {
                                 if(+prev > min){
                                         return +prev - 1
                                 }else{
@@ -20,7 +19,7 @@ export const TimeInput = ({ style, label, initValue, max, min }) => {
                         })}/>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                        <FontAwesome name="plus-square" size={24} color="#D9D9D9" style={styles.circle} onPress={() => setValue(prev => {
+                        <FontAwesome name="plus-square" size={24} color="#D9D9D9" style={styles.circle} onPress={() => onChangeHandler(prev => {
                                     if(+prev < max){
                                         return +prev + 1
                                     }else{

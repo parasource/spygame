@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
-import { View, Text } from 'react-native';
-import data from '../../../assets/data/data.json'
+import { View } from 'react-native';
 import { AppInput } from '../UI/AppInput';
 import { TimeInput } from '../UI/TimeInput';
 import { AppButton } from '../UI/AppButton';
@@ -32,7 +31,7 @@ function OfflineScreen({createOfflineGame, navigation}) {
                         onChangeHandler={setSpiesCount} 
                         max={Math.floor(playersCount/2)} min={1}/>
             <TimeInput label={'Время игры'} 
-                        initValue={timer} 
+                        initValue={timer}
                         onChangeHandler={setTimer} 
                         max={25} min={5}/>
             <AppButton pressHandler={startGameEvent}>

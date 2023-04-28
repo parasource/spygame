@@ -9,7 +9,7 @@ export default function HomeTabs() {
     return (
         <Tab.Navigator >
             <Tab.Screen name="Онлайн-игра" component={OnlineScreen} />
-            <Tab.Screen name="Создание игры" component={OfflineScreen} />
+            <Tab.Screen name="Оффлайн-игра" component={OfflineScreen} />
         </Tab.Navigator>
     );
 }

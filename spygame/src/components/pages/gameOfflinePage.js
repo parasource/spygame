@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Alert } from 'react-native'
+import { View, Alert} from 'react-native'
 import { AppButton } from "../UI/AppButton";
 import { Card } from "../Card/Card";
 import { connect } from 'react-redux';
