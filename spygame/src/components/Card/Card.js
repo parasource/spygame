@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
 	image: {
 		width: CARD_WIDTH,
 		height: CARD_HEIGHT,
+    color: '#05052C'
 	},
   card: {
     width: CARD_WIDTH,

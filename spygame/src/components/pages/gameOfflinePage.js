@@ -30,11 +30,8 @@ function gameOfflinePage({ navigation, cards, timer}) {
 
     return (
         <View style={{flex: 1}}>
-            {cards.map((card, index) => (
-                <Card card={card} key={'card' + index} index={index} setIsEnd={setIsEnd} />
-            ))}
-            {isEnd && 
-            <View style={{flex: 1, paddingHorizontal: 16, justifyContent: 'center', alignItems: 'center'}} pointerEvents="box-none">
+            {isEnd ?
+             <View style={{flex: 1, paddingHorizontal: 16, justifyContent: 'center', alignItems: 'center'}} pointerEvents="box-none">
                 <Timer minutes={timer}/>
                 <AppButton
                     pressHandler={
@@ -42,7 +39,13 @@ function gameOfflinePage({ navigation, cards, timer}) {
                     }>
                     Назад
                 </AppButton>
-            </View>}
+            </View>
+            :
+            <>
+                {cards.map((card, index) => (
+                    <Card card={card} key={'card' + index} index={index} setIsEnd={setIsEnd} />
+                ))}
+            </>}
         </View>
     )
 }

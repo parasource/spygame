@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "spygame",
+    "name": "Spy game",
     "slug": "spygame",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,6 +25,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b2c0461a-c725-49e9-b17a-7949bacc73e3"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/b2c0461a-c725-49e9-b17a-7949bacc73e3"
     }
   }
 }
