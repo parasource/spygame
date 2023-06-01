@@ -18,7 +18,7 @@ function OfflineScreen({ createOfflineGame, navigation }) {
     }
 
     return (
-        <View style={{ flex: 1, paddingHorizontal: 16 }}>
+        <View style={{ flex: 1, paddingHorizontal: 16, backgroundColor: '#fff'}}>
             <SliderInput label={'Количество мирных'}
                 onChangeHandler={setPlayersCount}
                 initValue={playersCount}

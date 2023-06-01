@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from 'react-native'
 import { Slider } from '@miblanchard/react-native-slider';
-import { FontAwesome } from '@expo/vector-icons';
 
 export const SliderInput = ({ max, min, initValue, onChangeHandler, label }) => {
 
@@ -29,16 +28,9 @@ export const SliderInput = ({ max, min, initValue, onChangeHandler, label }) => 
                     step={1}
                     maximumValue={max}
                     minimumValue={min}
-
-
                     containerStyle={{
                         flex: 1,
-                        borderColor: '#CBE3FF',
-                        borderWidth: 10,
-                        borderRadius: 10,
-                        borderStyle: 'solid',
                     }}
-
                     thumbStyle={{
                         backgroundColor: '#0069E5',
                         borderColor: '#fff',
@@ -47,16 +39,12 @@ export const SliderInput = ({ max, min, initValue, onChangeHandler, label }) => 
                         width: 24,
                         height: 24,
                     }}
-
                     maximumTrackTintColor='#AACCF3'
-
-                    minimumTrackTintColor='#62AAFF'
-
+                    minimumTrackTintColor='linear-gradient(90deg, #62AAFF 0%, #0075FF 100%)'
                     trackStyle={{
                         borderRadius: 10,
-                        height: 19,
-                    }}
-                />
+                        height: 16,
+                    }} />
             </View>
         </>
     )
@@ -64,6 +52,12 @@ export const SliderInput = ({ max, min, initValue, onChangeHandler, label }) => 
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#CBE3FF',
+        borderRadius: 20,
+        paddingRight: 10,
+        paddingRight: 16,
         marginTop: 16,
         flexDirection: 'row',
         alignItems: 'center',
@@ -71,8 +65,13 @@ const styles = StyleSheet.create({
 
     slider_value: {
         borderRadius: 20,
-        paddingHorizontal: 14,
-        paddingVertical: 7,
+        width: 44,
+        height: 44,
+        borderWidth: 5,
+        borderStyle: 'solid',
+        borderColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: '#0069E5',
         marginRight: 5,
     },
