@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native';
 import { AppButton } from '../UI/AppButton';
 import { NetworkConsumer } from 'react-native-offline';
+import { SliderInput } from '../UI/SliderInput';
 
 function OnlineScreen() {
     return (
