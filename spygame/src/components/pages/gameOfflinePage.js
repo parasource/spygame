@@ -37,7 +37,7 @@ function gameOfflinePage({ navigation, cards, timer}) {
                     pressHandler={
                         () => exitFromGame()
                     }>
-                    Назад
+                    Завершить досрочно
                 </AppButton>
             </View>
             :
