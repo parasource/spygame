@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { View, Text, StyleSheet, Animated, Button } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet } from 'react-native';
+import CircularProgress from 'react-native-circular-progress-indicator';
 
-export const Timer = ({ minutes = 0, seconds = 0 }) => {
+export const Timer = ({ minutes = 0, seconds = 0, exit}) => {
     const [over, setOver] = useState(false);
+    const [value, setValue] = useState(0)
     const [[m, s], setTime] = useState([minutes, seconds]);
 
     const tick = () => {
@@ -14,40 +16,30 @@ export const Timer = ({ minutes = 0, seconds = 0 }) => {
             setTime([m, s - 1]);
         }
     };
-
-    // fadeAnim will be used as the value for opacity. Initial Value: 0
-    const fadeAnim = useRef(new Animated.Value(0)).current;
-
-    const Anim = () => {
-        // Will change fadeAnim value to 1 in 5 seconds
-        Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: (minutes * 60) * 1000,
-            useNativeDriver: true,
-        }).start();
-    };
-
     useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);
         return () => clearInterval(timerID);
     });
 
-    useEffect(() => {
-        Anim()
-    }, [])
 
     return (
         <View style={{
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'center'
         }}>
-            <Animated.View
-                style={[
-                    styles.circle
-                ]}
-            >
-            </Animated.View>
-
+            <CircularProgress
+                radius={90}
+                value={100}
+                duration={(minutes * 60 * 1000)}
+                onAnimationComplete={() => {
+                    setValue(100)
+                    exit()
+                }}
+                inActiveStrokeColor='#0069E5'
+                activeStrokeColor='#EEEEEE'
+                inActiveStrokeWidth={4}
+                activeStrokeWidth={4}
+            />
             <View style={styles.time_wrapper}>
                 <Text style={styles.time}>{`${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`}</Text>
             </View>
@@ -63,20 +55,11 @@ const styles = StyleSheet.create({
     },
 
     time_wrapper: {
-        position: 'relative',
-        width: 171,
-        height: 171,
-        borderRadius: '100%',
+        width: 100,
+        height: 100,
         backgroundColor: '#fff',
+        position: 'absolute',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-
-    circle: {
-        position: 'absolute',
-        width: 175,
-        height: 175,
-        backgroundColor: '#0069E5',
-        borderRadius: '100%',
     },
 })

@@ -40,7 +40,7 @@ export const SliderInput = ({ max, min, initValue, onChangeHandler, label }) => 
                         height: 24,
                     }}
                     maximumTrackTintColor='#AACCF3'
-                    minimumTrackTintColor='linear-gradient(90deg, #62AAFF 0%, #0075FF 100%)'
+                    minimumTrackTintColor='#0069E5'
                     trackStyle={{
                         borderRadius: 10,
                         height: 16,
