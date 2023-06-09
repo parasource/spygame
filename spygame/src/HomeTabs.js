@@ -7,7 +7,7 @@ const Tab = createBottomTabNavigator();
 
 export default function HomeTabs() {
     return (
-        <Tab.Navigator >
+        <Tab.Navigator screenOptions={{ headerShown: false }}>
             <Tab.Screen name="Онлайн-игра" component={OnlineScreen} />
             <Tab.Screen name="Оффлайн-игра" component={OfflineScreen} />
         </Tab.Navigator>

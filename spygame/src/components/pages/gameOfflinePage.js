@@ -47,7 +47,7 @@ function gameOfflinePage({ navigation, cards, timer}) {
     return (
         <View style={{flex: 1}}>
             {isEnd ?
-             <View style={{flex: 1, paddingHorizontal: 16, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}} pointerEvents="box-none">
+             <View style={{flex: 1, paddingHorizontal: 16, paddingTop: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}} pointerEvents="box-none">
                 <Timer minutes={timer} exit={gameOver}/>
                 <AppButton
                     pressHandler={

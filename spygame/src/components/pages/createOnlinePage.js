@@ -6,7 +6,7 @@ import { NetworkConsumer } from 'react-native-offline';
 function OnlineScreen() {
     return (
         <View style={{
-            flex: 1, paddingHorizontal: 16, alignItems: 'center', backgroundColor: '#fff'
+            flex: 1, paddingHorizontal: 16, paddingTop: 50, alignItems: 'center', backgroundColor: '#fff'
         }}>
             <NetworkConsumer>
                 {({ isConnected }) =>

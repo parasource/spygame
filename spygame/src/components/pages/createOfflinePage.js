@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { AppInput } from '../UI/AppInput';
 import { TimeInput } from '../UI/TimeInput';
 import { AppButton } from '../UI/AppButton';
@@ -18,7 +18,16 @@ function OfflineScreen({ createOfflineGame, navigation }) {
     }
 
     return (
-        <View style={{ flex: 1, paddingHorizontal: 16, backgroundColor: '#fff'}}>
+        <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 87, backgroundColor: '#fff'}}>
+            <Text style = {{
+                fontFamily: 'Ysabeau',
+                fontStyle: 'normal',
+                fontWeight: 800,
+                fontSize: 44,
+                color:'#000000',
+            }}>
+                Создание игры 
+            </Text>
             <SliderInput label={'Количество мирных'}
                 onChangeHandler={setPlayersCount}
                 initValue={playersCount}
