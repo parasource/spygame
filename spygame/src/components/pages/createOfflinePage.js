@@ -24,7 +24,7 @@ function OfflineScreen({ createOfflineGame, navigation }) {
                 fontStyle: 'normal',
                 fontWeight: 800,
                 fontSize: 44,
-                color:'#000000',
+                color: '#000000',
             }}>
                 Создание игры 
             </Text>

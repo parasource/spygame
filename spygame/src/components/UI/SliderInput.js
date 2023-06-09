@@ -18,7 +18,7 @@ export const SliderInput = ({ max, min, initValue, onChangeHandler, label }) => 
             }
             <View style={styles.container}>
                 <View style={styles.slider_value}>
-                    <Text style={{ fontSize: 24, color: '#fff', }}>
+                    <Text style={{ fontSize: 24, color: '#0069E5', }}>
                         {initValue}
                     </Text>
                 </View >
@@ -43,7 +43,7 @@ export const SliderInput = ({ max, min, initValue, onChangeHandler, label }) => 
                     minimumTrackTintColor='#0069E5'
                     trackStyle={{
                         borderRadius: 10,
-                        height: 16,
+                        height: 8,
                     }} />
             </View>
         </>
@@ -54,10 +54,12 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#CBE3FF',
+        borderStyle: 'solid',
+        borderWidth: 2,
+        borderColor: '#EEEEEE',
+        borderLeftColor: '#fff',
         borderRadius: 20,
         paddingRight: 10,
-        paddingRight: 16,
         marginTop: 16,
         flexDirection: 'row',
         alignItems: 'center',
@@ -67,12 +69,11 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         width: 44,
         height: 44,
-        borderWidth: 5,
         borderStyle: 'solid',
-        borderColor: '#fff',
+        borderWidth: 2,
+        borderColor: '#EEEEEE',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0069E5',
         marginRight: 5,
     },
 
