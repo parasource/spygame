@@ -6,11 +6,13 @@ import { AppButton } from '../UI/AppButton';
 import { connect } from 'react-redux';
 import { createOfflineGame } from '../../store/gameReducer';
 import { SliderInput } from '../UI/SliderInput';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 function OfflineScreen({ createOfflineGame, navigation }) {
     const [playersCount, setPlayersCount] = useState(2)
     const [spiesCount, setSpiesCount] = useState(1)
     const [timer, setTimer] = useState(5)
+		const inserts = useSafeAreaInsets()
 
     const startGameEvent = () => {
         createOfflineGame({ playersCount, spiesCount, timer })
@@ -18,13 +20,15 @@ function OfflineScreen({ createOfflineGame, navigation }) {
     }
 
     return (
-        <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 87, backgroundColor: '#fff'}}>
+        <View style={{ flex: 1, paddingHorizontal: 16, backgroundColor: '#fff'}}>
             <Text style = {{
                 fontFamily: 'Ysabeau',
                 fontStyle: 'normal',
                 fontWeight: 800,
                 fontSize: 44,
                 color: '#000000',
+								lineHeight: 48,
+								marginTop: 40 + inserts.top
             }}>
                 Создание игры 
             </Text>

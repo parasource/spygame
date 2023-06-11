@@ -8,17 +8,17 @@ export const SliderInput = ({ max, min, initValue, onChangeHandler, label }) => 
         <>
             {label &&
                 <View style={styles.label_container}>
-                    <Text style={{ fontSize: 14, fontWeight: 700 }}>
+                    <Text style={{ fontSize: 14,  fontFamily: 'Lato Bold' }}>
                         {label}
                     </Text>
-                    <Text style={{ fontSize: 14, fontWeight: 700, color: '#757575' }}>
+                    <Text style={{ fontSize: 14, fontFamily: 'Lato Regular', color: '#757575' }}>
                         Макс.{max}
                     </Text>
                 </View>
             }
             <View style={styles.container}>
                 <View style={styles.slider_value}>
-                    <Text style={{ fontSize: 24, color: '#0069E5', }}>
+                    <Text style={{ fontSize: 24, color: '#0069E5', fontFamily: 'Lato Bold'}}>
                         {initValue}
                     </Text>
                 </View >
@@ -38,8 +38,9 @@ export const SliderInput = ({ max, min, initValue, onChangeHandler, label }) => 
                         borderStyle: 'solid',
                         width: 24,
                         height: 24,
+												borderRadius: 24
                     }}
-                    maximumTrackTintColor='#AACCF3'
+                    maximumTrackTintColor='#ECF5FF'
                     minimumTrackTintColor='#0069E5'
                     trackStyle={{
                         borderRadius: 10,
@@ -57,30 +58,34 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 2,
         borderColor: '#EEEEEE',
-        borderLeftColor: '#fff',
         borderRadius: 20,
         paddingRight: 10,
         marginTop: 16,
         flexDirection: 'row',
         alignItems: 'center',
+				height: 44,
+				borderTopLeftRadius: 48,
+				borderBottomLeftRadius: 48,
     },
 
     slider_value: {
-        borderRadius: 20,
-        width: 44,
-        height: 44,
+        borderRadius: 48,
+        width: 48,
+        height: 48,
         borderStyle: 'solid',
         borderWidth: 2,
         borderColor: '#EEEEEE',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 5,
+				marginLeft: -2
     },
 
     label_container: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 24,
         justifyContent: 'space-between'
     }
 });

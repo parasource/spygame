@@ -23,10 +23,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 32
+        marginTop: 24
     },
     text: {
+				fontFamily: 'Ysabeau',
+				fontSize: 16,
         color: '#fff',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     }
 })

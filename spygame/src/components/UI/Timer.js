@@ -35,8 +35,8 @@ export const Timer = ({ minutes = 0, seconds = 0, exit}) => {
                     setValue(100)
                     exit()
                 }}
-                inActiveStrokeColor='#0069E5'
-                activeStrokeColor='#EEEEEE'
+                inActiveStrokeColor='#EEEEEE'
+                activeStrokeColor='#0069E5'
                 inActiveStrokeWidth={4}
                 activeStrokeWidth={4}
             />
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         position: 'absolute',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+				fontFamily: 'Lato Bold'
     },
 })

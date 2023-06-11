@@ -4,9 +4,12 @@ import { AppButton } from "../UI/AppButton";
 import { Card } from "../Card/Card";
 import { connect } from 'react-redux';
 import { Timer } from "../UI/Timer";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 function gameOfflinePage({ navigation, cards, timer}) {
     const [isEnd, setIsEnd] = useState(false)
+    const [currentIndex, setCurrentIndex] = useState(cards.length - 1)
+		const inserts = useSafeAreaInsets()
 
     const exitFromGame = () => {
         Alert.alert(
@@ -47,7 +50,7 @@ function gameOfflinePage({ navigation, cards, timer}) {
     return (
         <View style={{flex: 1}}>
             {isEnd ?
-             <View style={{flex: 1, paddingHorizontal: 16, paddingTop: 50, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}} pointerEvents="box-none">
+             <View style={{flex: 1, paddingHorizontal: 16, paddingTop: 150 + inserts.top, paddingBottom: 90 + inserts.bottom, justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fff'}} pointerEvents="box-none">
                 <Timer minutes={timer} exit={gameOver}/>
                 <AppButton
                     pressHandler={
@@ -59,7 +62,11 @@ function gameOfflinePage({ navigation, cards, timer}) {
             :
             <>
                 {cards.map((card, index) => (
-                    <Card card={card} key={'card' + index} index={index} setIsEnd={setIsEnd} />
+                    <Card
+                    key = {'card' + index}
+										length={cards.length}
+										{...{currentIndex,setCurrentIndex, setIsEnd, index, card}}
+                    />
                 ))}
             </>}
         </View>
