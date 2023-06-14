@@ -7,12 +7,14 @@ import { connect } from 'react-redux';
 import { createOfflineGame } from '../../store/gameReducer';
 import { SliderInput } from '../UI/SliderInput';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { EditModal } from '../UI/EditModal';
 
 function OfflineScreen({ createOfflineGame, navigation }) {
     const [playersCount, setPlayersCount] = useState(2)
     const [spiesCount, setSpiesCount] = useState(1)
     const [timer, setTimer] = useState(5)
-		const inserts = useSafeAreaInsets()
+    const [modal, setModal] = useState(false)
+	const inserts = useSafeAreaInsets()
 
     const startGameEvent = () => {
         createOfflineGame({ playersCount, spiesCount, timer })
@@ -43,10 +45,13 @@ function OfflineScreen({ createOfflineGame, navigation }) {
             <TimeInput label={'Время игры'}
                 initValue={timer}
                 onChangeHandler={setTimer}
+                onChangeModal = {setModal}
                 max={25} min={5} />
             <AppButton pressHandler={startGameEvent}>
                 Начать игру
             </AppButton>
+
+            <EditModal visible={modal} onCancel={() => setModal(false)} />
         </View>
     );
 }
