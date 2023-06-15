@@ -14,7 +14,7 @@ function OfflineScreen({ createOfflineGame, navigation }) {
     const [spiesCount, setSpiesCount] = useState(1)
     const [timer, setTimer] = useState(5)
     const [modal, setModal] = useState(false)
-	const inserts = useSafeAreaInsets()
+    const inserts = useSafeAreaInsets()
 
     const startGameEvent = () => {
         createOfflineGame({ playersCount, spiesCount, timer })
@@ -22,17 +22,17 @@ function OfflineScreen({ createOfflineGame, navigation }) {
     }
 
     return (
-        <View style={{ flex: 1, paddingHorizontal: 16, backgroundColor: '#fff'}}>
-            <Text style = {{
+        <View style={{ flex: 1, paddingHorizontal: 16, backgroundColor: '#fff' }}>
+            <Text style={{
                 fontFamily: 'Ysabeau',
                 fontStyle: 'normal',
                 fontWeight: 800,
                 fontSize: 44,
                 color: '#000000',
-								lineHeight: 48,
-								marginTop: 40 + inserts.top
+                lineHeight: 48,
+                marginTop: 40 + inserts.top
             }}>
-                Создание игры 
+                Создание игры
             </Text>
             <SliderInput label={'Количество мирных'}
                 onChangeHandler={setPlayersCount}
@@ -45,13 +45,17 @@ function OfflineScreen({ createOfflineGame, navigation }) {
             <TimeInput label={'Время игры'}
                 initValue={timer}
                 onChangeHandler={setTimer}
-                onChangeModal = {setModal}
+                onChangeModal={setModal}
                 max={25} min={5} />
             <AppButton pressHandler={startGameEvent}>
                 Начать игру
             </AppButton>
 
-            <EditModal visible={modal} onCancel={() => setModal(false)} />
+            <EditModal visible={modal}
+                onCancel={() => setModal(false)}
+                timer={timer}
+                editTimer={setTimer}
+                max={15} min={5} />
         </View>
     );
 }
