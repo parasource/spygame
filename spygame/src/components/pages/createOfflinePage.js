@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { View, Text } from 'react-native';
-import { AppInput } from '../UI/AppInput';
-import { TimeInput } from '../UI/TimeInput';
+// import { AppInput } from '../UI/AppInput';
+// import { TimeInput } from '../UI/TimeInput';
 import { AppButton } from '../UI/AppButton';
 import { connect } from 'react-redux';
 import { createOfflineGame } from '../../store/gameReducer';
 import { SliderInput } from '../UI/SliderInput';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { EditModal } from '../UI/EditModal';
+// import { EditModal } from '../UI/EditModal';
+import { TimeCarousel } from '../UI/TImeCarousel';
 
 function OfflineScreen({ createOfflineGame, navigation }) {
     const [playersCount, setPlayersCount] = useState(2)
@@ -15,6 +16,7 @@ function OfflineScreen({ createOfflineGame, navigation }) {
     const [timer, setTimer] = useState(5)
     const [modal, setModal] = useState(false)
     const inserts = useSafeAreaInsets()
+    const dataMinutes = [5, 6, 7, 8, 9, 10]
 
     const startGameEvent = () => {
         createOfflineGame({ playersCount, spiesCount, timer })
@@ -42,20 +44,26 @@ function OfflineScreen({ createOfflineGame, navigation }) {
                 initValue={spiesCount}
                 onChangeHandler={setSpiesCount}
                 max={Math.floor(playersCount / 2)} min={1} />
-            <TimeInput label={'Время игры'}
+            {/* <TimeInput label={'Время игры'}
                 initValue={timer}
                 onChangeHandler={setTimer}
                 onChangeModal={setModal}
-                max={25} min={5} />
-            <AppButton pressHandler={startGameEvent}>
-                Начать игру
-            </AppButton>
+                max={25} min={5} /> */}
 
-            <EditModal visible={modal}
+            {/* <EditModal visible={modal}
                 onCancel={() => setModal(false)}
                 timer={timer}
                 editTimer={setTimer}
-                max={15} min={5} />
+                max={15} min={5} /> */}
+
+            <TimeCarousel
+                label={'Время игры (в минутах)'}
+                onChangeHandler={setTimer}
+                minutes={dataMinutes}
+            />
+            <AppButton pressHandler={startGameEvent}>
+                Начать игру
+            </AppButton>
         </View>
     );
 }
