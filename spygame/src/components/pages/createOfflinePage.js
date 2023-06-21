@@ -59,7 +59,7 @@ function OfflineScreen({ createOfflineGame, navigation }) {
             <TimeCarousel
                 label={'Время игры (в минутах)'}
                 onChangeHandler={setTimer}
-                minutes={dataMinutes}
+                max={10} min={5}
             />
             <AppButton pressHandler={startGameEvent}>
                 Начать игру
