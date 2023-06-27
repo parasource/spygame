@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, Alert} from 'react-native'
 import { AppButton } from "../UI/AppButton";
 import { Card } from "../Card/Card";

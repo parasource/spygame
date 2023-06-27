@@ -1,27 +1,27 @@
 import React, { useState } from 'react'
 import { View, Text } from 'react-native';
-// import { AppInput } from '../UI/AppInput';
-// import { TimeInput } from '../UI/TimeInput';
 import { AppButton } from '../UI/AppButton';
 import { connect } from 'react-redux';
 import { createOfflineGame } from '../../store/gameReducer';
 import { SliderInput } from '../UI/SliderInput';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-// import { EditModal } from '../UI/EditModal';
 import { TimeCarousel } from '../UI/TImeCarousel';
+import { useEffect } from 'react';
 
 function OfflineScreen({ createOfflineGame, navigation }) {
     const [playersCount, setPlayersCount] = useState(2)
     const [spiesCount, setSpiesCount] = useState(1)
     const [timer, setTimer] = useState(5)
-    const [modal, setModal] = useState(false)
     const inserts = useSafeAreaInsets()
-    const dataMinutes = [5, 6, 7, 8, 9, 10]
 
     const startGameEvent = () => {
         createOfflineGame({ playersCount, spiesCount, timer })
         navigation.navigate('Offline-game')
     }
+
+		useEffect(() => {
+			console.log(spiesCount);
+		}, [spiesCount])
 
     return (
         <View style={{ flex: 1, paddingHorizontal: 16, backgroundColor: '#fff' }}>
@@ -39,7 +39,7 @@ function OfflineScreen({ createOfflineGame, navigation }) {
             <SliderInput label={'Количество игроков'}
                 onChangeHandler={setPlayersCount}
                 initValue={playersCount}
-                max={10} min={2} />
+                max={10} min={3} />
             <SliderInput label={'Количество шпионов'}
                 initValue={spiesCount}
                 onChangeHandler={setSpiesCount}
