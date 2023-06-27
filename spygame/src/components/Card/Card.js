@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import { View, StyleSheet, Image, Dimensions, Text, ImageBackground } from 'react-native';
+import React, { useEffect, useState} from 'react';
+import { View, StyleSheet, Dimensions, Text, ImageBackground } from 'react-native';
 import { images } from '../../../assets/images/index';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import FlipCard from 'react-native-flip-card'
@@ -32,7 +32,6 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
 	const theta = 0;
 	
 	const [isFlipped, setIsFlipped] = useState(false)
-	const [isLoaded, setIsLoaded] = useState(true)
 	
 	useEffect(() => {
     translateY.value = withDelay(
@@ -117,6 +116,7 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
 							<> 
 								<SpyImage {...{CARD_WIDTH}}/>
 								<View style={{flex: .5}}>
+									<Text style={styles.spyTitle}>Вы шпион</Text>
 									<Text style={styles.spySmall}>Сделай вид, типа что то читаешь...</Text>
 								</View>
 							</>

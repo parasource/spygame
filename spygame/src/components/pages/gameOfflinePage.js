@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { View, Alert, Text} from 'react-native'
+=======
+import React, { useState } from "react";
+import { View, Alert} from 'react-native'
+>>>>>>> 727fff2c73578812f390251f2d788aac318f224f
 import { AppButton } from "../UI/AppButton";
 import { Card } from "../Card/Card";
 import { connect } from 'react-redux';
