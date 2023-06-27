@@ -19,13 +19,13 @@ export const TimeCarousel = ({ label, onChangeHandler, max, min }) => {
                 marginTop: 16
             }}>
                 <LinearGradient
-                    colors={['rgba(255,255,255,0.2)','rgba(255,255,255,0.8)','rgba(255,255,255,0.9)', 'rgba(255,255,255,1)']}
+                    colors={['rgba(255,255,255,0)', 'rgba(255,255,255, .8)', 'rgba(255,255,255,1)', 'rgba(255,255,255,1)']}
                     style= {{...styles.background, left: 0}}
                     end={{x: 0, y: 0}}
                 >
                 </LinearGradient>
                 <LinearGradient
-                    colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.6)','rgba(255,255,255,0.8)','rgba(255,255,255,0.9)', 'rgba(255,255,255,1)']}
+                    colors={['rgba(255,255,255,0)','rgba(255,255,255, .8)', 'rgba(255,255,255,1)', 'rgba(255,255,255,1)']}
                     style= {{...styles.background, right: 0, transform: 'rotate(180deg)'}}
                     end={{x: 0, y: 0}}
                 >
@@ -33,7 +33,7 @@ export const TimeCarousel = ({ label, onChangeHandler, max, min }) => {
                 <Carousel
                     loop={false}
                     width={width / 6}
-                    height={30}
+                    height={50}
                     defaultIndex={0}
                     data={minutes}
                     style={{
@@ -46,7 +46,8 @@ export const TimeCarousel = ({ label, onChangeHandler, max, min }) => {
                         <View style={{
                             alignSelf: 'center',
                             flexDirection: 'row',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
+														paddingVertical: 8
                         }}>
                             <Text style={{ textAlign: 'center', fontSize: 30 }}>
                                 {minutes[index]}
@@ -64,7 +65,7 @@ export const TimeCarousel = ({ label, onChangeHandler, max, min }) => {
 const styles = StyleSheet.create({
     background: {
         position: 'absolute',
-        width: '40%',
+        width: '50%',
         height: '100%',
         opacity: 1,
         zIndex: 10,

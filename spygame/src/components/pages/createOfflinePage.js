@@ -19,9 +19,6 @@ function OfflineScreen({ createOfflineGame, navigation }) {
         navigation.navigate('Offline-game')
     }
 
-		useEffect(() => {
-			console.log(spiesCount);
-		}, [spiesCount])
 
     return (
         <View style={{ flex: 1, paddingHorizontal: 16, backgroundColor: '#fff' }}>
