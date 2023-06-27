@@ -6,9 +6,7 @@ import Carousel from 'react-native-reanimated-carousel';
 
 export const TimeCarousel = ({ label, onChangeHandler, max, min }) => {
     const width = Dimensions.get('window').width;
-
     let minutes = []
-
     for (let i = min; i <= max; i++ ) {
         minutes.push(i)
     }
