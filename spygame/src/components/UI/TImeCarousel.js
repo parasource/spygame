@@ -19,13 +19,13 @@ export const TimeCarousel = ({ label, onChangeHandler, max, min }) => {
                 marginTop: 16
             }}>
                 <LinearGradient
-                    colors={['rgba(255,255,255,0.2)','rgba(255,255,255,0.5)','rgba(255,255,255,0.9)', 'rgba(255,255,255,1)']}
+                    colors={['rgba(255,255,255,0.2)','rgba(255,255,255,0.8)','rgba(255,255,255,0.9)', 'rgba(255,255,255,1)']}
                     style= {{...styles.background, left: 0}}
                     end={{x: 0, y: 0}}
                 >
                 </LinearGradient>
                 <LinearGradient
-                    colors={['rgba(255,255,255,0.2)','rgba(255,255,255,0.5)','rgba(255,255,255,0.9)', 'rgba(255,255,255,1)']}
+                    colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.6)','rgba(255,255,255,0.8)','rgba(255,255,255,0.9)', 'rgba(255,255,255,1)']}
                     style= {{...styles.background, right: 0, transform: 'rotate(180deg)'}}
                     end={{x: 0, y: 0}}
                 >
@@ -64,7 +64,7 @@ export const TimeCarousel = ({ label, onChangeHandler, max, min }) => {
 const styles = StyleSheet.create({
     background: {
         position: 'absolute',
-        width: '50%',
+        width: '40%',
         height: '100%',
         opacity: 1,
         zIndex: 10,
