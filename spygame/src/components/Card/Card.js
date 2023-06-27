@@ -33,9 +33,10 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
 	
 	const [isFlipped, setIsFlipped] = useState(false)
 	
+	
 	useEffect(() => {
     translateY.value = withDelay(
-      delay,
+			delay,
       withTiming((index - currentIndex) * 10, { duration: DURATION, easing: Easing.inOut(Easing.ease) })
     );
 		scale.value = withDelay(delay, withSpring(1 + .02 * (index - currentIndex)));
@@ -52,15 +53,15 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
       translateY.value = offset.value.y + translationY;
     })
     .onEnd(({ velocityX, velocityY }) => {
-			const dest = snapPoint(translateX.value, velocityX, SNAP_POINTS);
+			const dest = snapPoint(translateX.value, velocityX, isFlipped ? SNAP_POINTS : [0,0,0]);
       translateX.value = withSpring(dest, { velocity: velocityX });
       translateY.value = withSpring(index * -5, { velocity: velocityY });
       scale.value = withTiming(1, {}, () => {
-        const isLast = index === 0;
-        const isSwipedLeftOrRight = dest !== 0;
-        if (isLast && isSwipedLeftOrRight) {
-          runOnJS(setIsEnd)(true)
-        }
+				const isLast = index === 0;
+				const isSwipedLeftOrRight = dest !== 0;
+				if (isLast && isSwipedLeftOrRight) {
+					runOnJS(setIsEnd)(true)
+				}
 				if(isSwipedLeftOrRight){
 					runOnJS(setCurrentIndex)(index - 1)
 				}
@@ -84,19 +85,20 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
  			<GestureDetector gesture={gesture} enabled={false}>
 				<Animated.View style={[styles.card, style]}>
 					<FlipCard
-					flipHorizontal={true}
-					flipVertical={false}
-					friction={12}
-					style={styles.image}
-					onFlipEnd={() => setIsFlipped(true)}>
+						flipHorizontal={true}
+						flipVertical={false}
+						friction={12}
+						clickable={currentIndex === index}
+						style={styles.image}
+						onFlipEnd={() => setIsFlipped(true)}>
 						<View style={styles.cardReverse}>
 								{(currentIndex === index) && 
 								<><Text style={{
-										fontSize: 28, 
+										fontSize: isFlipped ? 20 : 28, 
 										lineHeight: 32,
 										textAlign: 'center',
 										fontWeight: 'bold', 
-										color: '#000000'}}>{isFlipped ? 'Свайпните карту и передай телефон' : 'Переверни карту'}</Text>
+										color: '#000000'}}>{isFlipped ? 'Свайпните карту и передай телефон следующему игроку' : 'Переверни карту'}</Text>
 								<ImageBackground
 									source={images.cardRev}
 									resizeMode='contain'
@@ -117,7 +119,7 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
 								<SpyImage {...{CARD_WIDTH}}/>
 								<View style={{flex: .5}}>
 									<Text style={styles.spyTitle}>Вы шпион</Text>
-									<Text style={styles.spySmall}>Сделай вид, типа что то читаешь...</Text>
+									<Text style={styles.spySmall}>Постарайтесь не выдать себя и угадать локацию</Text>
 								</View>
 							</>
 							: 
