@@ -13,7 +13,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { snapPoint } from "react-native-redash";
-
 const { width: wWidth, height } = Dimensions.get("window");
 
 const SNAP_POINTS = [-wWidth, 0, wWidth];
@@ -22,7 +21,7 @@ const CARD_WIDTH = wWidth - 60;
 const CARD_HEIGHT = CARD_WIDTH * aspectRatio;
 const DURATION = 250;
 
-export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, length}) => {
+export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, length, SpyImage, LocationImage}) => {
 	const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(-height);
@@ -33,6 +32,7 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
 	const theta = 0;
 	
 	const [isFlipped, setIsFlipped] = useState(false)
+	const [isLoaded, setIsLoaded] = useState(true)
 	
 	useEffect(() => {
     translateY.value = withDelay(
@@ -47,7 +47,6 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
     .onBegin(() => {
       offset.value = { x: translateX.value, y: translateY.value };
       rotateZ.value = withTiming(0);
-      // scale.value = withTiming(1.1);
     })
     .onUpdate(({ translationX, translationY }) => {
       translateX.value = offset.value.x + translationX;
@@ -98,7 +97,7 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
 										lineHeight: 32,
 										textAlign: 'center',
 										fontWeight: 'bold', 
-										color: '#000000'}}>{isFlipped ? 'Передай карту другому игроку' : 'Переверни карту'}</Text>
+										color: '#000000'}}>{isFlipped ? 'Свайпните карту и передай телефон' : 'Переверни карту'}</Text>
 								<ImageBackground
 									source={images.cardRev}
 									resizeMode='contain'
@@ -116,30 +115,14 @@ export const Card = ({setIsEnd, index, card, currentIndex, setCurrentIndex, leng
 						<View style={styles.cardContent}>
 							{card.role === 'Шпион' ? 
 							<> 
-								<View style={{
-											flex: 1,
-											width: CARD_WIDTH - 48,
-											borderRadius: 8,
-											backgroundColor: 'rgba(0, 0, 0, 0.8)',
-											alignItems: 'center',
-											justifyContent: 'center'
-											}}>
-									<Text style={styles.spyLocation}>Недоступно</Text>
-								</View> 
+								<SpyImage {...{CARD_WIDTH}}/>
 								<View style={{flex: .5}}>
-									<Text style={styles.spyTitle}>Ты шпион!</Text>
 									<Text style={styles.spySmall}>Сделай вид, типа что то читаешь...</Text>
 								</View>
 							</>
 							: 
 							<>
-							<Image source={images.locations.city} 
-									resizeMode='cover'
-									style={{
-										flex: 1,
-										width: CARD_WIDTH - 48,
-										borderRadius: 8
-										}}/>
+							<LocationImage {...{CARD_WIDTH}}/>
 							<Text style={styles.cardLabel}>Локация:</Text>
 							<Text style={styles.cardValue}>{card.location}</Text>
 							<Text style={styles.cardLabel}>Роль: </Text>
