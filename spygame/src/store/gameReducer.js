@@ -18,7 +18,8 @@ export const gameReducer = createReducer(
 				for (let index = 0; index < action.payload.playersCount; index++) {
 					arr[index] = {
 						role:	location.roles[getRandom(location.roles.length - 1)],
-						location: location.name
+						location: location.name,
+						image: location.image
 					}
 				}
 				for (let index = 0; index < action.payload.spiesCount; index++) {

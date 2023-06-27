@@ -5,6 +5,8 @@ import { Card } from "../Card/Card";
 import { connect } from 'react-redux';
 import { Timer } from "../UI/Timer";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { images } from "../../../assets/images";
+import { Image } from 'react-native'
 
 function gameOfflinePage({ navigation, cards, timer}) {
     const [isEnd, setIsEnd] = useState(false)
@@ -47,6 +49,24 @@ function gameOfflinePage({ navigation, cards, timer}) {
         )
     }
 
+		const LocationImage = ({CARD_WIDTH}) => <Image
+			source={images.locations[cards.find(el => el.role !== 'Шпион').image]}
+			resizeMode='cover'
+			style={{
+				flex: 1,
+				width: CARD_WIDTH - 48,
+				borderRadius: 8,
+				}}
+		/>
+
+		const SpyImage = ({CARD_WIDTH}) => <Image source={images.locations.spy} 
+			resizeMode='cover'
+			style={{
+				flex: 1,
+				width: CARD_WIDTH - 48,
+				borderRadius: 8,
+				}}/>
+
     return (
         <View style={{flex: 1}}>
             {isEnd ?
@@ -65,7 +85,7 @@ function gameOfflinePage({ navigation, cards, timer}) {
                     <Card
                     key = {'card' + index}
 										length={cards.length}
-										{...{currentIndex,setCurrentIndex, setIsEnd, index, card}}
+										{...{currentIndex,setCurrentIndex, setIsEnd, index, card, LocationImage, SpyImage}}
                     />
                 ))}
             </>}

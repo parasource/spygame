@@ -36,7 +36,7 @@ function OfflineScreen({ createOfflineGame, navigation }) {
             }}>
                 Создание игры
             </Text>
-            <SliderInput label={'Количество мирных'}
+            <SliderInput label={'Количество игроков'}
                 onChangeHandler={setPlayersCount}
                 initValue={playersCount}
                 max={10} min={2} />
@@ -44,18 +44,6 @@ function OfflineScreen({ createOfflineGame, navigation }) {
                 initValue={spiesCount}
                 onChangeHandler={setSpiesCount}
                 max={Math.floor(playersCount / 2)} min={1} />
-            {/* <TimeInput label={'Время игры'}
-                initValue={timer}
-                onChangeHandler={setTimer}
-                onChangeModal={setModal}
-                max={25} min={5} /> */}
-
-            {/* <EditModal visible={modal}
-                onCancel={() => setModal(false)}
-                timer={timer}
-                editTimer={setTimer}
-                max={15} min={5} /> */}
-
             <TimeCarousel
                 label={'Время игры (в минутах)'}
                 onChangeHandler={setTimer}

@@ -15,7 +15,8 @@ export const TimeCarousel = ({ label, onChangeHandler, max, min }) => {
         <View>
             {label && <Text style={{ fontSize: 14, marginTop: 20, fontWeight: 700 }}>{label}</Text>}
             <View style={{
-                alignItems: 'center'
+                alignItems: 'center',
+								marginTop: 16
             }}>
                 <Carousel
                     loop={false}
@@ -24,7 +25,7 @@ export const TimeCarousel = ({ label, onChangeHandler, max, min }) => {
                     defaultIndex={0}
                     data={minutes}
                     style={{
-                        width: width / 2,
+                        width: width - 32,
                         justifyContent: "center",
                         alignItems: "center",
                       }}
